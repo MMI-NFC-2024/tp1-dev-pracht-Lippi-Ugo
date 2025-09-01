@@ -1,0 +1,17 @@
+---
+import PlotFigure from '../components/PlotFigure.astro';
+import Layout from '../layouts/Layout.astro';
+import olympians from '../data/olympians.json';
+import * as Plot from "@observablehq/plot";
+---
+
+<Layout>
+	<h1>Hexbin heatmap</h1>
+	<PlotFigure
+		options={{
+			color: {scheme: "YlGnBu"},
+      		marks: [
+		Plot.hexagon(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height", symbol: "square"}))
+      ]}}
+	/>
+</Layout>
