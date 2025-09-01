@@ -1,3 +1,6 @@
+---
+import Header from '../components/Header.astro';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -8,13 +11,7 @@
 		<title>Penguins</title>
 	</head>
 	<body>
-		<nav>
-			<ul>
-				<li><a href="/">Scatterplot</a></li>
-				<li><a href="/linearregression">Linear regression</a></li>
-				<li><a href="/hexbinheatmap">Hexbin heatmap</a></li>
-			</ul>
-		</nav>
+		<Header/>
 		<slot />
 	</body>
 </html>
