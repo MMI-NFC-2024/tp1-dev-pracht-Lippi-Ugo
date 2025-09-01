@@ -1,0 +1,16 @@
+---
+import PlotFigure from '../components/PlotFigure.astro';
+import Layout from '../layouts/Layout.astro';
+import penguins from '../data/penguins.json';
+import * as Plot from "@observablehq/plot";
+---
+
+<Layout>
+	<h1>Scatterplot</h1>
+	<PlotFigure
+		options={{
+      		marks: [
+        Plot.dot(penguins, {x: 'culmen_length_mm', y: 'culmen_depth_mm'}),
+      ]}}
+	/>
+</Layout>
