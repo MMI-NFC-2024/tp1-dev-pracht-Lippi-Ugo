@@ -1,0 +1,24 @@
+---
+import PlotFigure from '../components/PlotFigure.astro';
+import Layout from '../layouts/Layout.astro';
+import countyboxes from '../data/countyboxes.json';
+import * as Plot from "@observablehq/plot";
+---
+
+<Layout>
+	<h1>County Boxes</h1>
+	<PlotFigure
+		options={{
+  projection: "albers-usa",
+  marks: [
+    Plot.rect(countyboxes, {
+      x1: "0", // or ([x1]) => x1
+      y1: "1", // or ([, y1]) => y1
+      x2: "2", // or ([,, x2]) => x2
+      y2: "3", // or ([,,, y2]) => y2
+      stroke: "currentColor"
+    })
+  ]
+}}
+	/>
+</Layout>

@@ -2,8 +2,9 @@
 import * as Plot from "@observablehq/plot";
 import { JSDOM } from "jsdom";
 const { options } = Astro.props;
-
 const plot = Plot.plot({ ...options, document: new JSDOM("").window.document });
 ---
-
-<div set:html={plot.outerHTML} />
+<head>
+    <link rel="stylesheet" href="/plot.css" />
+</head>
+<div class="plot-container" set:html={plot.outerHTML} />

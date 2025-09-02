@@ -1,0 +1,41 @@
+---
+import PlotFigure from '../components/PlotFigure.astro';
+import Layout from '../layouts/Layout.astro';
+import counties from '../data/counties.json';
+import unemployment from '../data/unemployment.json';
+import states from '../data/states.json';
+import statemap from '../data/statemap.json';
+import * as Plot from "@observablehq/plot";
+const unemploymentdata = new Map(unemployment);
+const statemapdata = new Map(statemap);
+---
+
+<Layout>
+	<h1>Choropleth</h1>
+	<PlotFigure
+		options={{
+  width: 975,
+  height: 610,
+  projection: "identity",
+  color: {
+    type: "quantize",
+    n: 9,
+    domain: [1, 10],
+    scheme: "blues",
+    label: "Unemployment rate (%)",
+    legend: true
+  },
+  marks: [
+    Plot.geo(counties, Plot.centroid({
+      fill: d => unemploymentdata.get(d.id),
+      tip: true,
+      channels: {
+        County: d => d.properties.name,
+        State: d => statemapdata.get(d.id.slice(0,2)).properties.name
+      }
+    })),
+    Plot.geo(states, {stroke: "white"})
+  ]
+}}
+	/>
+</Layout>
